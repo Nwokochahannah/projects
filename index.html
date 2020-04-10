@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>PiggyVest | Dashboard</title>
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+            line-height: 1.5;
+        }
+        body{
+            background-color: #062863;
+            background-image: url(https://res.cloudinary.com/anniella/image/upload/v1586505861/Start.ng/data1_juuoz5.png),
+                            url(https://res.cloudinary.com/anniella/image/upload/v1586505861/Start.ng/data2_mhhrk4.png),
+                            url(https://res.cloudinary.com/anniella/image/upload/v1586505861/Start.ng/data3_my57ni.png),
+                            url(https://res.cloudinary.com/anniella/image/upload/v1586505861/Start.ng/data4_km2kag.png);
+            background-size: 15%, 15%, 15%, 15%;
+            background-position: left -1% top -15%, right -9.5% top -1%, left -5% bottom -10%, right -6% bottom -5%;
+            background-origin: inherit;
+            background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            padding-bottom: 1rem;
+            padding-top: 1rem;
+            font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+        }
+        .wrapper{
+            border: 0 white auto;
+            background-color: white;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            padding-top: 1.3rem;
+            padding-bottom: 1.5rem;
+            border-radius: 1.25rem;
+            border-bottom-left-radius: 0rem;
+            margin-bottom: 2rem;
+            max-width: 560px;
+        }
+        label {
+            display: block;
+            color: #5a5454;
+            font-family: u8,sans-serif;
+            font-weight: 700;
+            font-size: .75rem;
+            margin-bottom: .20rem;
+        }
+        input{
+            background-color: #e7ecf0;
+            color: black;
+            padding-left: 1rem;
+            padding-bottom: 1rem;
+            padding-top: 1rem;
+            padding-right: 1rem;
+            border: 0;
+            border-radius: .25rem;
+            overflow: visible;
+            width: 100%;
+            line-height: inherit;
+            font-size: 95%;
+            margin-bottom: 2rem;
+        }
+        img {
+            height: 3.7rem;
+            width: 10.7rem;
+            margin-top: .85rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+        }
+        .create{
+            text-align: center;
+        }
+        #create{
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #083e9e;
+            margin-top: 1.5rem;
+            font-family: u8,sans-serif;
+        }
+        p, [for="abtype"] {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .welcome{
+            font-size: .875rem;
+            color: #646060;
+            font-family: karla,sans-serif;
+        }
+        ::placeholder{
+            color: #909aa5;
+        }
+        select{
+            background-color: #e7ecf0;
+            color: black;
+            padding-left: 1rem;
+            padding-bottom: 1rem;
+            padding-top: 1rem;
+            padding-right: 1rem;
+            border: 0;
+            border-radius: .25rem;
+            overflow: hidden;
+            width: 100%;
+            line-height: inherit;
+            font-size: 95%;
+            margin-bottom: 2rem;
+        }
+        .submit{
+            background-color: #06479c;
+            color: #f4f4f4;
+            font-family: karla, sans-serif;
+            font-weight: 600;
+            border-radius: .75rem;
+            border-bottom-left-radius: 0rem;
+            cursor: pointer;
+        }
+        .submit:hover{
+            background-color: #062863;
+        }
+        .login{
+            color: #f4f4f4;
+            font-size: .870rem;
+            font-family: karla ,sans-serif;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+        .login:hover{
+            color: #cec5c5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="https://res.cloudinary.com/anniella/image/upload/v1586207603/Start.ng/pvest-logo-web-white-min_vyfiq4.png" alt="user avatar">
+        </div>
+        <div class="wrapper">
+            <div class="create">
+                <p id="create">Create a Secure Account</p>
+                <p class="welcome">Welcome to the future of Savings & Investments</p>
+            </div>
+            <br>
+            <div class="form">
+                <form action="responseform.php">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" name="fullname" placeholder="Full Name">
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" placeholder="Email Address">
+                    <label for="phonenumber">Phone Number</label>
+                    <input type="text" name="phonenumber" placeholder="Phone number">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Password">
+                    <label for="referrerphone">Referrer Phone or Promo Code (Optional)</label>
+                    <input type="text" name="referrer" placeholder="Referrer Phone Or Code">
+                    <label for="hearing">How Did You Hear About Us (Optional)</label>
+                    <select name="options">
+                        <option selected>Click To Select</option>
+                        <option>Facebook</option>
+                        <option>Twitter</option>
+                        <option>Instagram</option>
+                        <option>Friend/Family/Coworker Referral</option>
+                        <option>Google Search</option>
+                        <option>Google Playstore</option>
+                        <option>Online Blog</option>
+                        <option>Local Newspaper</option>
+                        <option>At an event</option>
+                        <option>Other</option>
+                    </select>
+                    <input type="submit" value="CREATE ACCOUNT" class="submit">
+                </form>
+            </div>
+        </div>
+            <div class="login">
+                <p>Already have an account? Log In</p>
+            </div>
+    </div>
+</body>
+</html>
