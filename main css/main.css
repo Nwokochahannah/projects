@@ -1,0 +1,154 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+    align-items: center;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    color: #161c2d;
+    font-size: 15px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+.wrapper{
+    display: flex;
+    justify-items: auto;
+    align-items: center;
+    max-width: 80%;
+}
+.image{
+    flex-basis: 30%;
+    position: relative;
+}
+.aside{
+    flex-basis: 55%;
+    margin-left: 10%;
+}
+.name, span{
+    color: #c52c20; 
+}
+.firstp{
+    color: #6c757d;
+    margin-top: 0;
+}
+.ul1{
+    font-size: 15px;
+    color: #161c2d;
+    line-height: 32px;
+    width: 100%;
+    list-style-type: none;
+    padding-left: 0;
+}
+.span1{
+    width: 100%;
+    max-width: 110px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #161c2d;
+    margin-right: 1rem;
+}
+li{
+    color: #6c757d;
+}
+p, [for="abtype"] {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.wrapper2{
+    align-items: center;
+    padding-top: 50px;
+    width: 80%;
+}
+.hobbies{
+    font-size: 26px;
+    text-align: center;
+    color: #c52c20;
+}
+.secondp{
+    text-align: center;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: #6c757d;
+}
+.wrapper3{
+    width: 80%;
+}
+.contain{
+    display: flex;
+    margin: 1rem;
+    padding-top: 0;
+}
+.form1{
+    flex-basis: 45%;
+    margin-right: 3%;
+}
+.form2{
+    flex-basis: 45%;
+}
+.contact{
+    margin-top: 3rem;
+    color: #c52c20;
+    text-align: center;
+}
+input{
+    padding: 15px;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-shadow: none;
+    background-color: #e6ebf0;
+    border: 0 black;
+    border-radius: .25rem;
+}
+input:first-child{
+    margin-top: .90rem;
+}
+input::placeholder{
+    font-family: 'Poppins',sans-serif
+}
+textarea{
+    height: 100%;
+    padding: 12px;
+    width: 100%;
+    border: 0;
+    border-radius: .6rem;
+    background-color: #e6ebf0;
+    margin-bottom: 0;
+}
+#submit{
+    width: 10rem;
+    color: #ffffff;
+    background-color: #c52c20;
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+#submit:hover{
+    background-color: #c3170b;
+}
+footer{
+    text-align: center;
+    font-size: 15px;
+    width: 100%;
+    background-color: #ccd4db;
+}
+.list-inline-item {
+    display: inline;
+    list-style-type: none;
+}
+
+.fa {
+    margin: 10px;
+    margin-top: 2px;
+    font-size: 20%;
+}
+
+a {
+    color: rgb(0, 0, 0);
+}
+a:hover {
+    font-size: 25px;
+}
