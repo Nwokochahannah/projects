@@ -1,0 +1,174 @@
+*{
+    box-sizing: border-box
+}
+
+body{
+    background-color: #134e15;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.quiz_box{
+    min-height: 25rem;
+    max-width: 35rem;
+    border-radius: 0.70rem;
+    background-color: #ffffff;
+    margin: 1.5rem auto;
+    padding: 1.25rem;
+}
+
+.quiz_box .score-board{
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.quiz_box .score-board .counter{
+    font-weight: 600;
+    float: left;
+    width: 70%;
+    color: #4caf50;
+    padding: 0.25rem;
+}
+
+.quiz_box .score-board .score h4{
+    background-color: #4caf50;
+    padding: 0.25rem 1rem;
+    border-radius: 0.50rem; 
+    margin: 0;
+    box-shadow: 0px 2px 0px #81C784;
+    outline: none;
+}
+
+.quiz_box .question{
+    margin-top: 1rem;
+    border-radius: 0.25rem;
+    font-size: 25px;
+    width: 100%;
+    float: left;
+}
+
+.quiz_box .options{
+    float: left;
+    width: 100%;
+}
+
+.quiz_box .options ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.quiz_box .options ul.disabled{
+    pointer-events: none;
+}
+
+.quiz_box .options ul li{
+    font-size: 19px;
+    background-color: #dcedc8;
+    width: 100%;
+    margin-top: 0.80rem;
+    border-radius: 0.65rem;
+    padding: 0.75rem;
+    box-shadow: 0px 2px 0px #A5D6A7;
+    outline: none;
+    cursor: pointer;
+}
+.quiz_box .options ul li.correct{
+    background-color: #4caf50;
+    box-shadow: 0px 2px 0px #A5D6A7;
+}
+
+.quiz_box .options ul li.wrong{
+    background-color: #ec4340;
+    box-shadow: 0px 2px 0px #A5D6A7;
+}
+
+.quiz_box .options ul li:active{
+    box-shadow: 0px 0px 0px transparent;
+}
+
+.quiz_box .next-button{
+    display: flex;
+    width: 100%;
+    padding-bottom: 0.5rem;
+    align-content: center;
+}
+
+.quiz_box .next-button .next button{
+    background-color: #4caf50;
+    padding: 0.5rem 3rem;
+    border: 0;
+    border-radius: 0.65rem;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0px 2px 0px #81C784;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+.quiz_box .next-button .next button:active{
+    box-shadow: 0px 0px 0px transparent; 
+}
+
+.gameOver .show{
+    display: flex;
+}
+.gameOver{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 10;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameOver .overBox{
+    background-color: #2BAE66FF;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    flex-basis: 700px;
+    max-width: 700px;
+    color: #ffffff;
+}
+
+.gameOver .overBox h4{
+    font-size: 36px;
+    margin: 0 0 20px;
+}
+
+.gameOver .overBox button{
+    padding: 15px 50px;
+    border: none;
+    background-color: #ff9800;
+    border-radius: 0.65rem;
+    font-size: 16px;
+    margin: 0.65rem 0 0.70rem;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* .quiz_box .score-counter div{
+    height: 40px;
+    width: 40px;
+    background-color: #cccccc;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-top: 0.45rem;
+} */
+
+.correct{
+    background-color: #4caf50;
+    box-shadow: 0px 2px 0px #A5D6A7;
+}
+
+.wrong{
+    background-color: #ec4340;
+    box-shadow: 0px 2px 0px #A5D6A7;
+}
