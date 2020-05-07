@@ -1,149 +1,159 @@
-let questionNum = document.getElementById('question-number');
-let scoreBoard = document.getElementById('scoreBoard');
-let questionBox = document.getElementById("questionBox");
-let ul = document.getElementById("ul");
-let opt1 = document.getElementById("opt1");
-let opt2 = document.getElementById("opt2");
-let opt3 = document.getElementById("opt3");
-let opt4 = document.getElementById("opt4");
-let nxt = document.getElementById("nextButton");
-let correctNumber = document.getElementById("correctNumber");
-let totalNumber = document.getElementById("totalNumber");
-let percentage = document.getElementById("percentage");
-let quizBox = document.getElementById("quizBox");
-// let scoreCounter = document.getElementById("score-counter");
+let scoreBoard = document.querySelector(".scoreBoard");
+const question = document.querySelector(".question");
+const opt1 = document.querySelector(".option1");
+const opt2 = document.querySelector(".option2");
+const opt3 = document.querySelector(".option3");
+const opt4 = document.querySelector(".option4");
+const options = document.querySelector(".options").children;
+const answerCounterWrapper = document.querySelector(".answersCounter");
+const questionNumberSpan = document.querySelector(".questionNumValue");
+const totalQuestionSpan = document.querySelector(".totalNumber");
+const correctNumber = document.querySelector(".correctNumber");
+const totalQuestionSpan2 = document.querySelector(".totalNumber2");
+const percentage = document.querySelector(".percentage");
+let questionIndex;
+let index = 0;
+let myArray = [];
+let score = 0;
 
-// let correctNumber = this.score;
-let quiz = {
-    questions:[
-        {q: 'HTML is a?', 
-            options:['Programming Language','Database software','Markup Language with Tags','Operating system'], 
-            answer:3
-        },
-        {q:'The main content of the webpage are kept?', 
-            options:['Inside the head section of the page', 'After closing html tag of the page',
-                'Inside the body section of the page', 'Before the Head section of the page'],
-            answer:3
-        },
-        {q:'Line break can be added in HTML pages by using', 
-            options:['break', 'br', 'line', 'new-line'],
-            answer:2
-        },
-        {q:'Title tag is kept inside', 
-            options:['body tag', 'head tag', 'before starting of the main content', 'before starting of html tag'],
-            answer: 2
-        },
-        {q: 'Which tag is used to draw horizontal line in HTML',
-            options:['br', 'title', 'html', 'hr'],
-            answer: 4
-        },
-    ],
-
-   
-    index:0,
-    load:function(){
-        if (this.index <= this.questions.length - 1){
-            questionBox.innerHTML = this.questions[this.index].q;
-            opt1.innerHTML = this.questions[this.index].options[0];
-            opt2.innerHTML = this.questions[this.index].options[1];
-            opt3.innerHTML = this.questions[this.index].options[2];
-            opt4.innerHTML = this.questions[this.index].options[3];
-        } else {
-            questionBox.innerHTML = 'Quiz is over. Thanks';
-            opt1.style.display = 'none';
-            opt2.style.display = 'none';
-            opt3.style.display = 'none';
-            opt4.style.display = 'none';
-            nxt.style.display = 'none';
-            questionNum.innerHTML = '';
-            quizBox.innerHTML = this.scoreBoard();
-        }
+const questions = [
+    {
+        q: 'HTML is a?', 
+        options:['Programming Language','Database software','Operating system','Markup Language with Tags'], 
+        answer:3
     },
-
-    quizOver:function (){
-        this.scoreBoard();
-    //     document.querySelector(".gameOver").classList.add("show");
-    //     correctNumber.innerHTML = this.num;
-    //     totalNumber.innerHTML = this.scoreBoard();
-    //     percentage.innerHTML = (this.score/this.questions) * 100 + "%";
+    {
+        q:'The main content of the webpage are kept?', 
+        options:['Inside the head section of the page', 'After closing html tag of the page',
+         'Before the Head section of the page', 'Inside the body section of the page'],
+        answer:3
     },
-
-    check: function(elem){
-        let id = elem.id.split('');
-        if(id[id.length - 1] == this.questions[this.index].answer){
-            this.score++;
-            elem.classList.add("correct");
-            elem.innerHTML = 'Correct';
-            this.scoreBoard();
-        } else {
-            elem.classList.add('wrong');
-            elem.innerHTML = 'Wrong';
-        }
-        this.disabled();
+    {
+        q:'Line break can be added in HTML pages by using', 
+        options:['break', 'br', 'line', 'new-line'],
+        answer:1
     },
-
-    next:function(){
-        this.index++;
-        this.num++;
-        this.load();
-        this.questionNum();
+    {
+        q:'Title tag is kept', 
+        options:['Inside the body tag', 'Inside the head tag', 'before the main content', 'before the html tag'],
+        answer: 1
     },
-
-    disabled:function(){
-        for (let i = 0; i < ul.children.length; i++){
-            ul.children[i].classList.add("disabled");
-            ul.children[i].style.pointerEvents = 'none';
-        }
+    {
+        q: 'Which tag is used to draw horizontal line in HTML',
+        options:['br', 'title', 'html', 'hr'],
+        answer: 3
     },
+];
 
-    abled:function(){
-        for (let i = 0; i < ul.children.length; i++){
-            ul.children[i].style.pointerEvents = 'auto';
-            ul.children[i].className = '';
-        }
-    },
+totalQuestionSpan.innerHTML = questions.length;
+function load(){
+    questionNumberSpan.innerHTML = index + 1;
+    question.innerHTML = questions[questionIndex].q;
+    opt1.innerHTML = questions[questionIndex].options[0];
+    opt2.innerHTML = questions[questionIndex].options[1];
+    opt3.innerHTML = questions[questionIndex].options[2];
+    opt4.innerHTML = questions[questionIndex].options[3];
+    index++;
+};
 
-    score:0,
-    scoreBoard:function(){
-        scoreBoard.innerHTML = 'SCORE: ' + this.score  + '/' + this.questions.length ;
-    },
+function check(ele){
+    if (ele.id == questions[questionIndex].answer){
+        ele.classList.add("correct");
+        updateAnswerCounter("correct");
+        score++;
+        console.log("score:" + score);
+    } else {
+        ele.classList.add("wrong");
+        updateAnswerCounter("wrong");
+    }
+    disabled();
+};
 
-    num:1,
-    questionNum:function(){
-        if (this.index <= this.questions.length - 1){
-        questionNum.innerHTML = 'Question ' + this.num + ' of ' + this.questions.length;
+function disabled(){
+    for (let i = 0; i < options.length; i++){
+        options[i].classList.add("disabled");
+        if (options[i].id == questions[questionIndex].answer){
+            options[i].classList.add("correct");
         }
     }
-}
+};
 
-ques = this.index;
+function enabled(){
+    for (let i = 0; i < options.length; i++){
+        options[i].classList.remove("disabled", "correct", "wrong");
+    }
+};
+
 function validate(){
-    if (!ul.children[0].classList.contains("disabled")){
+    if (!options[0].classList.contains("disabled")){
         alert("Select an option");
     } else {
-        quiz.abled();
-        quiz.next();
+        enabled();
+        randomQuestion();
+        scoreCard();
     }
-}
+};
 
-function button(elem){
-    quiz.check(elem);
-    quiz.disabled();
-}
+function randomQuestion(){
+    let randomNumber = Math.floor(Math.random() * questions.length);
+    let duplicate = 0;
+    if (index == questions.length){
+        quizOver();
+    } else {
+        if (myArray.length > 0){
+            for (let i = 0; i < myArray.length; i++){
+                if(myArray[i] == randomNumber){
+                    duplicate = 1;
+                    break;
+                }
+            } 
+            if (duplicate == 1){
+                randomQuestion();
+            } else { 
+                questionIndex = randomNumber; 
+                load();
+            }
+        }
+        if (myArray.length == 0){
+            questionIndex = randomNumber; 
+            load();
+    }
+    
+    }
+    myArray.push(randomNumber);
+};
 
-function next (){
+function scoreCard(){
+    scoreBoard.innerHTML = 'SCORE: ' + score  + '/' + questions.length ;
+};
+
+function next(){
     validate();
-}
+};
+
+function answerCounter(){
+    for (let i = 0; i < questions.length; i++){
+        const div = document.createElement("div");
+        answerCounterWrapper.appendChild(div);
+    }
+};
+
+function updateAnswerCounter(classes){
+    answerCounterWrapper.children[index - 1].classList.add(classes);
+};
 
 function quizOver(){
     document.querySelector(".gameOver").classList.add("show");
-    correctNumber.innerHTML = this.num;
-    totalNumber.innerHTML = quiz.scoreBoard();
-    percentage.innerHTML = (this.score/ques) * 100 + "%";
-}
+    correctNumber.innerHTML = score;
+    totalQuestionSpan2.innerHTML = questions.length;
+    percentage.innerHTML = (score/questions.length) * 100 + "%";
+};
 
 function tryAgain(){
     window.location.reload();
-}
+};
 
-window.onload = quiz.load();
+window.onload = function(){
+   randomQuestion();
+   answerCounter();
+};

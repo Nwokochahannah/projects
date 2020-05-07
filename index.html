@@ -9,49 +9,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="quiz_box" id="quizBox">
+    <div class="quiz_box">
         <div class="score-board" id="score-board">
             <div class="counter" id="question-number">
-                Question 1 of 5
+                <h3>Question <span class="questionNumValue"></span> of <span class="totalNumber"></span></h3>
             </div>
             <div class="score">
-                <h4 id="scoreBoard">SCORE: 0</h4>
+                <h4 class="scoreBoard">SCORE: 0</h4>
             </div>
         </div>
+
         <hr>
-        <div class="question" id="questionBox"></div>
+
+        <div class="question"></div>
         <div class="options">
-            <ul id="ul">
-                <li id="opt1" onclick="button(this)"></li>
-                <li id="opt2" onclick="button(this)"></li>
-                <li id="opt3" onclick="button(this)"></li>
-                <li id="opt4" onclick="button(this)"></li>
-            </ul>
-            <div class="next-button">
-                <div class="next">
-                    <button id="nextButton" onclick="next()">NEXT</button>
-                </div>
-            </div>
+            <div id="0" class="option1" onclick="check(this)"></div>
+            <div id="1" class="option2" onclick="check(this)"></div>
+            <div id="2" class="option3" onclick="check(this)"></div>
+            <div id="3" class="option4" onclick="check(this)"></div>
         </div>
-        <!-- <hr> -->
-        <!-- <div class="score-counter">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div> -->
+
+        <div class="next-button">
+            <button class="nextButton" onclick="next()">NEXT</button>
+        </div>
+
+        <div class="answersCounter">
+    
+        </div>
     </div>
+    
     <div class="gameOver">
         <div class="overBox">
-            <h4>You had a total of:
-                <span id="correctNumber">2</span>
-                out of
-                <span id="totalNumber">5</span>
-                That is 
-                <span id="percentage">20%</span>
-            </h4>
-            <button type="button" onclick="tryAgain()">Try Again</button> 
+            <h1>
+            Thanks for Playing the quiz! 
+            <br> 
+            You got <span class="correctNumber"></span> out of <span class="totalNumber2"></span> <br>
+            You had <span class="percentage"></span>
+            </h1>
+            <button onclick="tryAgain()">Try Again</button>
         </div>
     </div>
     <script src="index.js"></script>

@@ -1,16 +1,16 @@
 *{
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 body{
-    background-color: #134e15;
     margin: 0;
     padding: 0;
+    background-color: #134e15;
     font-family: 'Poppins', sans-serif;
 }
 
 .quiz_box{
-    min-height: 25rem;
+    min-height: 30rem;
     max-width: 35rem;
     border-radius: 0.70rem;
     background-color: #ffffff;
@@ -27,9 +27,14 @@ body{
 .quiz_box .score-board .counter{
     font-weight: 600;
     float: left;
-    width: 70%;
+    width: 60%;
     color: #4caf50;
     padding: 0.25rem;
+}
+
+.quiz_box .score-board .counter h3{
+    padding: 0;
+    margin: 0;
 }
 
 .quiz_box .score-board .score h4{
@@ -41,29 +46,15 @@ body{
     outline: none;
 }
 
-.quiz_box .question{
-    margin-top: 1rem;
+.question{
+    padding: 0.80rem 0;
     border-radius: 0.25rem;
     font-size: 25px;
     width: 100%;
     float: left;
 }
 
-.quiz_box .options{
-    float: left;
-    width: 100%;
-}
-
-.quiz_box .options ul{
-    list-style-type: none;
-    padding: 0;
-}
-
-.quiz_box .options ul.disabled{
-    pointer-events: none;
-}
-
-.quiz_box .options ul li{
+.options div{
     font-size: 19px;
     background-color: #dcedc8;
     width: 100%;
@@ -72,103 +63,150 @@ body{
     padding: 0.75rem;
     box-shadow: 0px 2px 0px #A5D6A7;
     outline: none;
+    position: relative;
+    overflow: hidden;
     cursor: pointer;
 }
-.quiz_box .options ul li.correct{
+
+.options div.disabled{
+    pointer-events: none;
+}
+
+.options div.correct{
+    z-index: 1;
+    color: #fff;
+}
+
+.options div.correct::before{
+    content: '';
+    position: absolute;
+    left:0;
+    top:0;
+    width: 100%;
     background-color: #4caf50;
     box-shadow: 0px 2px 0px #A5D6A7;
+    height: 100%;
+    z-index: -1;
+    animation: animateBackground 1s ease;
+    animation-fill-mode: inherit;
 }
 
-.quiz_box .options ul li.wrong{
+.options div.wrong{
+    z-index: 1;
+    color: #fff;
+}
+
+.options div.wrong::before{
+    content: '';
+    position: absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
     background-color: #ec4340;
     box-shadow: 0px 2px 0px #A5D6A7;
+    z-index: -1;
+    animation: animateBackground 1s ease;
+    animation-fill-mode: inherit;
 }
 
-.quiz_box .options ul li:active{
+.options div:active{
     box-shadow: 0px 0px 0px transparent;
 }
 
-.quiz_box .next-button{
+.next-button{
     display: flex;
     width: 100%;
     padding-bottom: 0.5rem;
     align-content: center;
 }
 
-.quiz_box .next-button .next button{
+.next-button .nextButton{
     background-color: #4caf50;
     padding: 0.5rem 3rem;
     border: 0;
     border-radius: 0.65rem;
     font-size: 17px;
+    margin: 0.65rem 0 0.80rem;
     cursor: pointer;
     box-shadow: 0px 2px 0px #81C784;
     font-family: 'Poppins', sans-serif;
     outline: none;
 }
 
-.quiz_box .next-button .next button:active{
+.next-button .nextButton:active{
     box-shadow: 0px 0px 0px transparent; 
 }
 
-.gameOver .show{
-    display: flex;
-}
-.gameOver{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.9);
-    z-index: 10;
-    display: none;
-    align-items: center;
-    justify-content: center;
+.answersCounter{
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
 }
 
-.gameOver .overBox{
-    background-color: #2BAE66FF;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    flex-basis: 700px;
-    max-width: 700px;
-    color: #ffffff;
-}
-
-.gameOver .overBox h4{
-    font-size: 36px;
-    margin: 0 0 20px;
-}
-
-.gameOver .overBox button{
-    padding: 15px 50px;
-    border: none;
-    background-color: #ff9800;
-    border-radius: 0.65rem;
-    font-size: 16px;
-    margin: 0.65rem 0 0.70rem;
-    color: #ffffff;
-    cursor: pointer;
-}
-
-/* .quiz_box .score-counter div{
+.answersCounter div{
     height: 40px;
     width: 40px;
     background-color: #cccccc;
     display: inline-block;
     border-radius: 50%;
     margin-right: 5px;
-    margin-top: 0.45rem;
-} */
+}
 
-.correct{
+.answersCounter div.correct{
     background-color: #4caf50;
-    box-shadow: 0px 2px 0px #A5D6A7;
 }
 
-.wrong{
+.answersCounter div.wrong{
     background-color: #ec4340;
-    box-shadow: 0px 2px 0px #A5D6A7;
 }
+
+.gameOver{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 2, 2, 0.9);
+    z-index: 10;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameOver.show{
+    display: flex;
+}
+
+.gameOver .overBox{
+    background-color: #10d01f;
+    padding: 0.90rem;
+    border-radius: 0.45rem;
+    text-align: center;
+    flex-basis: 35rem;
+    max-width: 30rem;
+    color: #ffffff;
+}
+
+.gameOver .overBox h1{
+    font-size: 30px;
+    margin: 0 0 0.80rem;
+}
+
+.gameOver .overBox button{
+    padding: 15px 50px;
+    border: none;
+    background-color: #2196F3;
+    border-radius: 0.65rem;
+    font-size: 16px;
+    margin: 0.65rem 0 0.80rem;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.gameOver .overBox button:hover{
+    background-color: #2196F3;
+}
+
+@media (min-width: 640px) { body {font-size:1rem;} } 
+@media (min-width:960px) { body {font-size:1.2rem;} } 
+@media (min-width:1100px) { body {font-size:1.5rem;} } 
