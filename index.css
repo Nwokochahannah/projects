@@ -121,7 +121,7 @@ body{
     align-content: center;
 }
 
-.next-button .nextButton{
+.next-button .btn{
     background-color: #4caf50;
     padding: 0.5rem 3rem;
     border: 0;
@@ -134,7 +134,7 @@ body{
     outline: none;
 }
 
-.next-button .nextButton:active{
+.next-button .btn:active{
     box-shadow: 0px 0px 0px transparent; 
 }
 

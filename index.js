@@ -11,10 +11,13 @@ const totalQuestionSpan = document.querySelector(".totalNumber");
 const correctNumber = document.querySelector(".correctNumber");
 const totalQuestionSpan2 = document.querySelector(".totalNumber2");
 const percentage = document.querySelector(".percentage");
+const nextBtn = document.querySelector(".next-button");
 let questionIndex;
 let index = 0;
-let myArray = [];
+let myArray = Array.of();
 let score = 0;
+
+// Array of Objects to Store the Questions and each Options and Answers
 
 const questions = [
     {
@@ -45,7 +48,8 @@ const questions = [
     },
 ];
 
-totalQuestionSpan.innerHTML = questions.length;
+// This function loads Each time the we load or Reload the Browser
+
 function load(){
     questionNumberSpan.innerHTML = index + 1;
     question.innerHTML = questions[questionIndex].q;
@@ -53,21 +57,24 @@ function load(){
     opt2.innerHTML = questions[questionIndex].options[1];
     opt3.innerHTML = questions[questionIndex].options[2];
     opt4.innerHTML = questions[questionIndex].options[3];
-    index++;
+    ++index;
 };
+
+// This Function Checks if an Option was Clicked and if it Correct or wrong
 
 function check(ele){
     if (ele.id == questions[questionIndex].answer){
         ele.classList.add("correct");
         updateAnswerCounter("correct");
         score++;
-        console.log("score:" + score);
     } else {
         ele.classList.add("wrong");
         updateAnswerCounter("wrong");
     }
     disabled();
 };
+
+// This function Disables All other options when one has already been clicked and adds the class(correct) to all questions 
 
 function disabled(){
     for (let i = 0; i < options.length; i++){
@@ -78,26 +85,32 @@ function disabled(){
     }
 };
 
+// This function removes classes from The old Question and makes the options clickable Again
+
 function enabled(){
     for (let i = 0; i < options.length; i++){
         options[i].classList.remove("disabled", "correct", "wrong");
     }
 };
 
+// This Function makes the Next button unclickable unless an Option has already been clicked
+
 function validate(){
     if (!options[0].classList.contains("disabled")){
-        alert("Select an option");
+        nextBtn.classList.add('disabled')
     } else {
         enabled();
-        randomQuestion();
+        randomize();
         scoreCard();
     }
 };
 
-function randomQuestion(){
+// This Function randomizes the Questions on each load on the browser using random numbers, it also calls the function that ends the quiz and gives an index to each Question
+
+function randomize(){
     let randomNumber = Math.floor(Math.random() * questions.length);
     let duplicate = 0;
-    if (index == questions.length){
+    if (index == [questions.length]){
         quizOver();
     } else {
         if (myArray.length > 0){
@@ -108,7 +121,7 @@ function randomQuestion(){
                 }
             } 
             if (duplicate == 1){
-                randomQuestion();
+                randomize();
             } else { 
                 questionIndex = randomNumber; 
                 load();
@@ -117,19 +130,25 @@ function randomQuestion(){
         if (myArray.length == 0){
             questionIndex = randomNumber; 
             load();
-    }
+        }
     
     }
     myArray.push(randomNumber);
 };
 
+// This Function changes the score in the score board
+
 function scoreCard(){
     scoreBoard.innerHTML = 'SCORE: ' + score  + '/' + questions.length ;
 };
 
+// This function creates functionality for the next button
+
 function next(){
     validate();
 };
+
+// This Function cretes the elements for the counter at the bottom of the quiz box
 
 function answerCounter(){
     for (let i = 0; i < questions.length; i++){
@@ -138,10 +157,15 @@ function answerCounter(){
     }
 };
 
+// This Function updates the counter on each click
+
 function updateAnswerCounter(classes){
     answerCounterWrapper.children[index - 1].classList.add(classes);
 };
 
+// This Function create sthe message at the end of the quiz 
+
+totalQuestionSpan.innerHTML = questions.length;
 function quizOver(){
     document.querySelector(".gameOver").classList.add("show");
     correctNumber.innerHTML = score;
@@ -149,11 +173,15 @@ function quizOver(){
     percentage.innerHTML = (score/questions.length) * 100 + "%";
 };
 
+// This Function reloads the quiz if you want to try again
+
 function tryAgain(){
     window.location.reload();
 };
 
+// This Function load the quiz whenever the browser is reloaded
+
 window.onload = function(){
-   randomQuestion();
+   randomize();
    answerCounter();
 };
